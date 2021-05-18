@@ -2,7 +2,7 @@ from django.core.management.base import BaseCommand
 from django.db import connections, utils
 from psycopg2.extras import NamedTupleCursor
 
-from common.models import Company, CompanyIndustry, CompanyManager
+from grc_common.models import Company, CompanyIndustry, CompanyManager
 
 
 class Command(BaseCommand):

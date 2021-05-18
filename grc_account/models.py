@@ -67,3 +67,22 @@ def get_password_reset_token_expiry_time():
     """
     # get token validation time
     return getattr(settings, 'RESET_PASSWORD_EXPIRY', 24)
+
+
+class User(models.Model):
+    """
+        This model contains users info.
+        Required:
+            - created_at
+            - area
+            - account
+            - language
+    """
+
+    # 0 - applicant
+    # 1 - employer
+    created_at = models.DateTimeField()
+    area = models.ForeignKey('grc_common.Area', on_delete=models.CASCADE)
+    description = models.TextField(null=True)
+    account = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
+    language = models.CharField(max_length=2)

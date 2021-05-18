@@ -114,25 +114,6 @@ class Account(models.Model):
     last_name = models.CharField(max_length=255)
 
 
-class User(models.Model):
-    """
-        This model contains users info.
-        Required:
-            - created_at
-            - area
-            - account
-            - language
-    """
-
-    # 0 - applicant
-    # 1 - employer
-    created_at = models.DateTimeField()
-    area = models.ForeignKey(Area, on_delete=models.CASCADE)
-    description = models.TextField(null=True)
-    account = models.OneToOneField(Account, on_delete=models.CASCADE)
-    language = models.CharField(max_length=2)
-
-
 class Company(models.Model):
     """
         This model contains company info.
@@ -173,7 +154,7 @@ class CompanyManager(models.Model):
             - type
     """
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey('grc_account.User', on_delete=models.CASCADE)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     # Есть одна роль ГКЛ (главное контактное лицо) - employer_manager.type=0
     #

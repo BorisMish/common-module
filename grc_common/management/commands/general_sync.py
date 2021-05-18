@@ -2,7 +2,7 @@ from django.core.management.base import BaseCommand
 from django.db import connections, utils
 from psycopg2.extras import NamedTupleCursor
 
-from common.models import Language, Industry, ProfessionalArea, Specialization, KeySkill, Currency, Area
+from grc_common.models import Language, Industry, ProfessionalArea, Specialization, KeySkill, Currency, Area
 
 class Command(BaseCommand):
     help = 'Sync General Models'
