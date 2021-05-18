@@ -23,7 +23,7 @@ urlpatterns = [
     url('reset-password/', RequestResetPasswordView.as_view(), name='request-reset-password'),
 
     # Change password
-    url('change-password/', ChangePasswordView.as_view(), name='change-password'),
+    url('change-password/', ChangePasswordView, name='change-password'),
 ]
 
 urlpatterns += router.urls
