@@ -6,6 +6,27 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 
 
+class Account(models.Model):
+    """
+        This model contains account info.
+        Required:
+            - disabled
+            - created_at
+            - updated_at
+            - primary_email
+            - disabled
+            - last_name
+    """
+
+    disabled = models.BooleanField()
+    created_at = models.DateTimeField()
+    updated_at = models.DateTimeField()
+    primary_email = models.TextField()
+    first_name = models.CharField(max_length=255)
+    middle_name = models.CharField(max_length=255, null=True)
+    last_name = models.CharField(max_length=255)
+
+
 class SocialAccount(models.Model):
     """
         Social account model
