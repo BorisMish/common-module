@@ -2,8 +2,7 @@ from django.core.management.base import BaseCommand
 from django.db import connections, utils
 from psycopg2.extras import NamedTupleCursor
 from django.conf import settings
-from django.contrib.auth import get_user_model
-from grc_account.models import User
+from grc_account.models import User, Account
 
 
 class Command(BaseCommand):
@@ -23,7 +22,7 @@ class Command(BaseCommand):
 
             for account in rows:
                 try:
-                    get_user_model().objects.create(pk=account.hhid,
+                    Account.objects.create(pk=account.hhid,
                                            disabled=account.disabled,
                                            created_at=account.creation_time,
                                            updated_at=account.last_modification_time,
