@@ -17,7 +17,8 @@ class Command(BaseCommand):
     def load_account(self, conn):
         with conn.connection.cursor(cursor_factory=NamedTupleCursor) as cursor:
             cursor.execute(''' select *
-                            from account ''')
+                            from account 
+			limit 10 ''')
             rows = cursor.fetchall()
 
             for account in rows:
@@ -37,7 +38,7 @@ class Command(BaseCommand):
     def load_user(self, conn):
         user_type =getattr(settings, 'USER_TYPE', 0)
         with conn.connection.cursor(cursor_factory=NamedTupleCursor) as cursor:
-            cursor.execute(f'select * from hhuser where type = {user_type}')
+            cursor.execute(f'select * from hhuser where type = {user_type} limit 10')
             rows = cursor.fetchall()
 
             for user in rows:

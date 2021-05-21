@@ -30,7 +30,8 @@ class Command(BaseCommand):
         FROM language
                  left join translation t_ru on 'language.'||split_part(language.name, '.', 2) = t_ru.name and t_ru.lang = 'RU'
                  left join translation t_en on 'language.'||split_part(language.name, '.', 2) = t_en.name and t_en.lang = 'EN'
-                 left join translation t_ua on 'language.'||split_part(language.name, '.', 2) = t_ua.name and t_ua.lang = 'UA' ''')
+                 left join translation t_ua on 'language.'||split_part(language.name, '.', 2) = t_ua.name and t_ua.lang = 'UA' 
+limit 10 ''')
             rows = cursor.fetchall()
 
             for language in rows:
@@ -53,7 +54,8 @@ FROM industry
          left join translation t_en on industry.name = t_en.name and t_en.lang = 'EN'
          left join translation t_ru on industry.name = t_ru.name and t_ru.lang = 'RU'
          left join translation t_ua on industry.name = t_ua.name and t_ua.lang = 'UA'
-order by industry_id ''')
+order by industry_id 
+limit 10 ''')
             rows = cursor.fetchall()
 
             for industry in rows:
@@ -75,7 +77,8 @@ order by industry_id ''')
 from professional_area
      left join translation t_en on professional_area.name = t_en.name and t_en.lang = 'EN'
      left join translation t_ru on professional_area.name = t_ru.name and t_ru.lang = 'RU'
-     left join translation t_ua on professional_area.name = t_ua.name and t_ua.lang = 'UA' ''')
+     left join translation t_ua on professional_area.name = t_ua.name and t_ua.lang = 'UA'
+limit 10  ''')
             rows = cursor.fetchall()
 
             for profarea in rows:
@@ -99,7 +102,8 @@ from professional_area
 FROM specialization
     left join translation t_en on specialization.name = t_en.name and t_en.lang = 'EN'
     left join translation t_ru on specialization.name = t_ru.name and t_ru.lang = 'RU'
-    left join translation t_ua on specialization.name = t_ua.name and t_ua.lang = 'UA' ''')
+    left join translation t_ua on specialization.name = t_ua.name and t_ua.lang = 'UA' 
+limit 10 ''')
             rows = cursor.fetchall()
 
             for spec in rows:
@@ -115,7 +119,7 @@ FROM specialization
 
     def load_key_skill(self, conn):
         with conn.connection.cursor(cursor_factory=NamedTupleCursor) as cursor:
-            cursor.execute(''' SELECT * FROM key_skill order by key_skill_id ''')
+            cursor.execute(''' SELECT * FROM key_skill order by key_skill_id limit 10 ''')
             rows = cursor.fetchall()
 
             for skill in rows:
@@ -129,7 +133,7 @@ FROM specialization
 
     def load_currency(self, conn):
         with conn.connection.cursor(cursor_factory=NamedTupleCursor) as cursor:
-            cursor.execute(''' SELECT * FROM currency''')
+            cursor.execute(''' SELECT * FROM currency limit 10 ''')
             rows = cursor.fetchall()
 
             for currency in rows:
@@ -152,7 +156,8 @@ FROM specialization
                                          left join translation t_en on area.name = t_en.name and t_en.lang = 'EN'
                                          left join translation t_ru on area.name = t_ru.name and t_ru.lang = 'RU'
                                          left join translation t_ua on area.name = t_ua.name and t_ua.lang = 'UA'
-                                ORDER BY parent_id ''')
+                                ORDER BY parent_id 
+limit 10 ''')
             rows = cursor.fetchall()
 
             for area in rows:

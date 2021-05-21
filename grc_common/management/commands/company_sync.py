@@ -18,7 +18,7 @@ class Command(BaseCommand):
     def load_company(self, conn):
         with conn.connection.cursor(cursor_factory=NamedTupleCursor) as cursor:
             cursor.execute(''' select *
-                            from employer ''')
+                            from employer limit 10 ''')
             rows = cursor.fetchall()
 
             for employer in rows:
@@ -39,7 +39,7 @@ class Command(BaseCommand):
     def load_company_industry(self, conn):
         with conn.connection.cursor(cursor_factory=NamedTupleCursor) as cursor:
             cursor.execute(''' select *
-                               from employer_industry ''')
+                               from employer_industry limit 10''')
             rows = cursor.fetchall()
 
             for employer in rows:
@@ -53,7 +53,7 @@ class Command(BaseCommand):
     def load_company_manager(self, conn):
         with conn.connection.cursor(cursor_factory=NamedTupleCursor) as cursor:
             cursor.execute(''' select *
-                               from employer_manager ''')
+                               from employer_manager limit 10''')
             rows = cursor.fetchall()
 
             for employer in rows:
